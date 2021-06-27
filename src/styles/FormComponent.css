@@ -1,0 +1,12 @@
+.formComponent {
+    border: 1px solid grey;
+    margin-top: 1vh;
+}
+.formComponent > * {
+    margin-top: 0.5vh;
+    display: inline-block;
+
+}
+.trashImg {
+    display: block;
+}
