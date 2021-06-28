@@ -31,6 +31,20 @@ class App extends Component {
           end: "2020-02-01",
           duties: "placeholder duties"
         }
+      ],
+      project: [
+        {
+          projectName: "placeholder project name",
+          url: "example.com",
+          start: "2020-01-01",
+          end: "2020-02-01",
+          description: "placeholder description"
+        }
+      ],
+      contact: [
+        "email: placeholder email",
+        "phone: placeholder phone",
+        "placeholder entry: text"
       ]
     }
   }
@@ -58,13 +72,22 @@ class App extends Component {
     const el = event.target;
     const parent = el.parentElement;
     const obj = JSON.parse(JSON.stringify(this.state)) //deep copy of state so it's not changed 
-    const arr = obj[parent.dataset.name]
+    let arr = obj[parent.dataset.name]
 
     if(el.type === "date") {
       arr[id][el.dataset.name] = el.value;
       el.readOnly = true;
+    } else if(el.localName === "a") {
+      arr = obj[parent.parentElement.parentElement.dataset.name];
+      // console.log(arr[id])
+      arr[id][el.parentElement.dataset.name] = el.innerText.trim();
+    } else if(parent.dataset.name === "contact"){
+      arr[id] = el.innerText.trim();
+      if(arr[id] === "") {
+        arr.splice(id, 1)
+      }
     } else {
-      arr[id][el.dataset.name] = el.innerText;
+      arr[id][el.dataset.name] = el.innerText.trim();
     }
 
     this.setState({...obj});
@@ -96,8 +119,19 @@ class App extends Component {
           start: "2020-01-01",
           end: "2020-02-01",
           duties: "placeholder duties"
+    } 
+  } else if(parent.dataset.name === "project") {
+      blank = {
+        projectName: "placeholder project name",
+        url: "example.com",
+        start: "2020-01-01",
+        end: "2020-02-01",
+        description: "placeholder description"
+      }
     }
-  }
+    else if(parent.dataset.name === "contact") {
+      blank = "placeholder entry: text";
+    }
     arr.push(blank)
     
     this.setState({...obj})
@@ -123,6 +157,7 @@ class App extends Component {
           personalInfo={personalInfo}
           education={this.state.education}
           employment={this.state.employment}
+          project={this.state.project}
           edit={this.edit}
           editDate={this.editDate}
           stopEdit={this.stopEdit}
@@ -130,7 +165,12 @@ class App extends Component {
           addForm={this.addForm}
           deleteForm={this.deleteForm}
         />
-        <RightContainer />
+        <RightContainer 
+          contact={this.state.contact}
+          edit={this.edit}
+          addForm={this.addForm}
+          stopEditForm={this.stopEditForm}
+        />
       </div>
     );
   }

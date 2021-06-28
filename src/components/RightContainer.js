@@ -1,10 +1,16 @@
 import React from "react";
 import "../styles/RightContainer.css";
+import ContactContainer from "./ContactContainer";
 
-function RightContainer() {
+function RightContainer(props) {
     return(
         <div className="rightContainer">
-            desno
+            <ContactContainer 
+                contact={props.contact}
+                edit={props.edit}
+                addForm={props.addForm}
+                stopEditForm={props.stopEditForm}
+            />
         </div>
     );
 }

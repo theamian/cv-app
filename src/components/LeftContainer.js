@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/LeftContainer.css";
 import EducationContainer from "./EducationContainer";
 import EmploymentContainer from "./EmploymentContainer";
+import ProjectContainer from "./ProjectContainer";
 import PersonalInfo from "./PersonalInfo";
 
 function LeftContainer(props) {
@@ -22,6 +23,14 @@ function LeftContainer(props) {
             />
             <EmploymentContainer 
                 employment={props.employment}
+                edit={props.edit}
+                stopEditForm={props.stopEditForm}
+                editDate={props.editDate}
+                addForm={props.addForm}
+                deleteForm={props.deleteForm}
+            />
+            <ProjectContainer 
+                project={props.project}
                 edit={props.edit}
                 stopEditForm={props.stopEditForm}
                 editDate={props.editDate}

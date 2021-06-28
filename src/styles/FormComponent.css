@@ -5,7 +5,6 @@
 .formComponent > * {
     margin-top: 0.5vh;
     display: inline-block;
-
 }
 .trashImg {
     display: block;

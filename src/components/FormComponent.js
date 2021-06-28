@@ -3,8 +3,8 @@ import "../styles/FormComponent.css";
 import trash from "../trash.svg";
 
 function FormComponent(props) {
-    // const {school, job } = props; //TODO triba rewrite cili formcomponent i tako da su imena (data-name) i labels (School: Major: itd) dinamički
     let category = {}
+    let project = null;
     if(props.school) {
         category = props.school;
         category.category = "education";
@@ -19,6 +19,30 @@ function FormComponent(props) {
         category.comment = "duties";
         category.main = category.employer;
         category.side = category.duties;
+    } else if(props.project) {
+        category = props.project;
+        category.category = "project";
+        category.title = "projectName";
+        category.comment = "decription";
+        category.link = "url";
+        category.main = category.projectName;
+        category.side = category.description;
+        project = 
+            <div
+                style={{display:"block"}}
+                >
+            url:&nbsp;
+                <div
+                    data-name="url"
+                    onClick={props.edit}
+                    onBlur={(event) => props.stopEditForm(event, category.id)}
+                    style={{display:"inline-block"}}
+                    >
+                        <a href={category.url}>{category.url}</a>
+                </div>
+            </div>
+
+
     }
 
     return(
@@ -31,6 +55,7 @@ function FormComponent(props) {
                     {category.main}
             </div>
             <br></br>
+            {project}
             <label htmlFor="start">Start:&nbsp;</label>
             <input 
                 data-name="start" 
