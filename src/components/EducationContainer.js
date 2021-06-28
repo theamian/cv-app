@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/EducationContainer.css"
+import "../styles/FormContainer.css"
 import FormComponent from "./FormComponent";
 import plusImg from "../plus.svg";
 
@@ -20,7 +20,7 @@ function EducationContainer(props) {
     })
     return(
         <div 
-            className="educationContainer"
+            className="formContainer"
             data-name="education">
         EDUCATION:
             {schools}

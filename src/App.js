@@ -89,8 +89,15 @@ class App extends Component {
           start: "2020-01-01",
           end: "2020-02-01",
           major: "placeholder major"
-      }
+      } 
+    } else if(parent.dataset.name === "employment") {
+      blank = {
+        employer: "placeholder employer",
+          start: "2020-01-01",
+          end: "2020-02-01",
+          duties: "placeholder duties"
     }
+  }
     arr.push(blank)
     
     this.setState({...obj})
