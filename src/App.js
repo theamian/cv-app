@@ -208,7 +208,7 @@ class App extends Component {
         </div>
         <footer>
           <button id="printBtn" onClick={this.printPDF}>
-            print pdf
+            download pdf
           </button>
         </footer>
       </div>
