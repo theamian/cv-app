@@ -1,3 +1,5 @@
 .leftContainer {
-    flex-basis: 66%;
+  flex-basis: 66%;
+  padding-left: 1vw;
+  padding-right: 1vw;
 }

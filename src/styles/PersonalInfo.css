@@ -1,3 +1,11 @@
 .personalInfo {
-    margin-left: 1vw;
+  margin-left: 1vw;
+}
+
+h1 {
+  margin-bottom: 1vh;
+}
+h3 {
+  margin-top: 0;
+  margin-bottom: 3vh;
 }

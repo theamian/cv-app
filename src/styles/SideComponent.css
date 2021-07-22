@@ -1,5 +1,5 @@
-.rightContainer {
-  flex-basis: 34%;
+.sideComponent {
+  font-weight: normal;
   padding-left: 1vw;
   padding-right: 1vw;
 }

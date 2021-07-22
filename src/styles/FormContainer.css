@@ -1,8 +1,12 @@
 .formContainer {
-    padding-left: 1vw;
-    font-weight:bold;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-bottom: 0.5vh;
+  padding-top: 0.5vh;
+  font-weight: bold;
+  margin-bottom: 0.5vh;
 }
 .plusImg {
-    display: block;
-    margin: auto auto;
+  display: block;
+  margin: auto auto;
 }

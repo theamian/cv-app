@@ -1,4 +1,6 @@
 .contactContainer {
-    border: 2px solid yellow;
-    margin-top: 2vh;
+  margin-top: 2vh;
+  font-weight: bold;
+  padding-top: 1vh;
+  padding-left: 1vw;
 }
