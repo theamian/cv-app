@@ -13,10 +13,9 @@ body,
 
 .mainContainer {
   background-color: white;
-  min-height: auto;
-  border-radius: 10px;
   display: flex;
-  margin: 5vh auto;
+  flex-grow: 1;
+  margin: 0 auto;
   padding: 2vh;
   width: 65%;
 }
@@ -36,7 +35,7 @@ footer {
 }
 
 footer > button {
-  width: 8vw;
+  min-width: 8vw;
   height: 4vh;
   background-color: rgb(100, 100, 220);
   border-color: rgb(100, 100, 220);
@@ -53,5 +52,10 @@ footer > button {
 @media screen and (max-width: 400px) {
   .mainContainer {
     flex-direction: column;
+    width: 95%;
+    padding: 0.5vh;
+  }
+  footer {
+    display: none;
   }
 }
