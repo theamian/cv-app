@@ -197,7 +197,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
     const personalInfo = { name: this.state.name, title: this.state.title };
     return (
       <div className="midContainer">
