@@ -3,16 +3,16 @@ import "../styles/LeftContainer.css";
 import EducationContainer from "./EducationContainer";
 import EmploymentContainer from "./EmploymentContainer";
 import ProjectContainer from "./ProjectContainer";
-import PersonalInfo from "./PersonalInfo";
+// import PersonalInfo from "./PersonalInfo";
 
 function LeftContainer(props) {
   return (
     <div className="leftContainer">
-      <PersonalInfo
+      {/* <PersonalInfo
         personalInfo={props.personalInfo}
         edit={props.edit}
         stopEdit={props.stopEdit}
-      />
+      /> */}
       <EducationContainer
         education={props.education}
         edit={props.edit}

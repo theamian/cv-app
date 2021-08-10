@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "./styles/App.css";
 import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 import LeftContainer from "./components/LeftContainer";
 import RightContainer from "./components/RightContainer";
+import PersonalInfo from "./components/PersonalInfo";
 
 class App extends Component {
   constructor() {
@@ -159,24 +161,38 @@ class App extends Component {
   };
 
   // to print as PDF
-  printPDF = async () => {
-    var doc = new jsPDF("p", "mm", [990, 1260]); //the number values are tweaked manually to center the image on the PDF
+  printPDF = () => {
     var pdfjs = document.querySelector("#main");
-    let copy = pdfjs.cloneNode(true);
-
-    copy.classList.remove("mainContainer");
-    copy.classList.add("printable");
-    let buttons = copy.querySelectorAll("button");
-    buttons.forEach((button) => (button.style.visibility = "hidden"));
-
     let name = this.state.name;
+    var divHeight = pdfjs.offsetHeight;
+    var divWidth = pdfjs.offsetWidth;
+    var ratio = divHeight / divWidth;
 
-    doc.html(copy, {
-      callback: function (doc) {
-        doc.save(`${name}.pdf`);
+    html2canvas(pdfjs, {
+      scale: 2,
+      onclone: function (clone) {
+        let copy = clone.querySelector("#main");
+        let buttons = copy.querySelectorAll("button");
+        let containers = [];
+
+        clone
+          .querySelectorAll(".formContainer")
+          .forEach((container) => containers.push(container));
+        containers.push(clone.querySelector(".contactContainer"));
+        containers.push(clone.querySelector(".skillsContainer"));
+        containers.forEach((container) => {
+          if (container.children.length < 2) container.style.display = "none";
+        });
+        buttons.forEach((button) => (button.style.visibility = "hidden"));
       },
-      x: 0,
-      y: 0,
+    }).then((canvas) => {
+      const imgData = canvas.toDataURL("image/jpeg");
+      const doc = new jsPDF("p", "mm", "a4");
+      let width = doc.internal.pageSize.getWidth();
+      let height = doc.internal.pageSize.getHeight();
+      height = ratio * width;
+      doc.addImage(imgData, "JPEG", 0, 0, width, height);
+      doc.save(`${name} resume.pdf`);
     });
   };
 
@@ -186,25 +202,31 @@ class App extends Component {
     return (
       <div className="midContainer">
         <div id="main" className="mainContainer">
-          <LeftContainer
+          <PersonalInfo
             personalInfo={personalInfo}
-            education={this.state.education}
-            employment={this.state.employment}
-            project={this.state.project}
             edit={this.edit}
-            editDate={this.editDate}
             stopEdit={this.stopEdit}
-            stopEditForm={this.stopEditForm}
-            addForm={this.addForm}
-            deleteForm={this.deleteForm}
           />
-          <RightContainer
-            contact={this.state.contact}
-            skills={this.state.skills}
-            edit={this.edit}
-            addForm={this.addForm}
-            stopEditForm={this.stopEditForm}
-          />
+          <div className="helpContainer">
+            <LeftContainer
+              education={this.state.education}
+              employment={this.state.employment}
+              project={this.state.project}
+              edit={this.edit}
+              editDate={this.editDate}
+              stopEdit={this.stopEdit}
+              stopEditForm={this.stopEditForm}
+              addForm={this.addForm}
+              deleteForm={this.deleteForm}
+            />
+            <RightContainer
+              contact={this.state.contact}
+              skills={this.state.skills}
+              edit={this.edit}
+              addForm={this.addForm}
+              stopEditForm={this.stopEditForm}
+            />
+          </div>
         </div>
         <footer>
           <button id="printBtn" onClick={this.printPDF}>

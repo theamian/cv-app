@@ -3,7 +3,7 @@ import "../styles/PersonalInfo.css";
 
 function PersonalInfo(props) {
   const { name, title } = props.personalInfo;
-
+  // console.log(props);
   return (
     <div className="personalInfo">
       <h1 onClick={props.edit} onBlur={props.stopEdit} data-name="name">

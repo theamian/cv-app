@@ -14,6 +14,7 @@ body,
 .mainContainer {
   background-color: white;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
   margin: 0 auto;
   padding: 2vh;
@@ -25,6 +26,10 @@ body,
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.helpContainer {
+display: flex;
 }
 
 footer {
@@ -47,6 +52,22 @@ footer > button {
 .printable {
   min-width: 80vw;
   display: flex;
+  flex-direction: column;
+}
+
+.printable .formComponent {
+  border: none; 
+}
+
+.printable .rightContainer {
+  /* background-color: red; */
+  flex-basis: content;
+}
+
+.printable .leftContainer {
+  /* background-color: green; */
+  flex-basis: content;
+  flex-grow: 1;
 }
 
 @media screen and (max-width: 400px) {
